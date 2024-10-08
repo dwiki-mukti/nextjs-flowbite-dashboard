@@ -27,18 +27,17 @@ export const flowbiteTheme: CustomFlowbiteTheme = {
   sidebar: {
     root: {
       base: "h-full bg-gray-50",
-      inner:
-        "h-full overflow-y-auto overflow-x-hidden bg-white py-4 px-3 dark:bg-gray-800",
+      inner: "h-full overflow-y-auto overflow-x-hidden bg-white py-4 px-3 dark:bg-gray-800",
     },
-    collapse: {
-      list: "space-y-2 py-2 list-none",
-    },
-    item: {
-      base: "no-underline flex items-center rounded-lg p-2 text-lg font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-    },
-    itemGroup: {
-      base: "list-none border-t border-gray-200 pt-3 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700",
-    },
+    // collapse: {
+    //   list: "space-y-2 py-2 list-none",
+    // },
+    // item: {
+    //   base: "no-underline flex items-center rounded-lg p-2 text-lg font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
+    // },
+    // itemGroup: {
+    //   base: "list-none border-t border-gray-200 pt-3 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700",
+    // },
   },
   button: {
     "base": "group relative flex items-stretch justify-center p-0.5 text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none",
@@ -191,5 +190,5 @@ export const flowbiteTheme: CustomFlowbiteTheme = {
     "items": {
       "base": ""
     }
-  }
+  },
 };

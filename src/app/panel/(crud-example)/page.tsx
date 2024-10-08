@@ -1,7 +1,7 @@
 'use client'
 
 import Table from '@/utilities/components/globals/Table'
-import { Button, Card, Drawer } from 'flowbite-react'
+import { Button, Card, Drawer, Dropdown } from 'flowbite-react'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { HiBookOpen, HiEye, HiPencilAlt, HiPlus } from "react-icons/hi";
 import Form from '@/utilities/components/globals/Form'
@@ -92,17 +92,33 @@ export default function TableExample() {
           ]}
           data={{
             dataRows: Books,
+            paginate: {
+              current_page: 1,
+              last_page: 20,
+              per_page: 3,
+              total: 60
+            }
           }}
           actions={[
             ((dataRow) => {
               return (
                 <>
-                  <Button onClick={() => onShowEditBook(dataRow)}>
+                  {/* <Button onClick={() => onShowEditBook(dataRow)}>
                     <HiPencilAlt className="mr-2 h-5 w-5" /> Edit
                   </Button>
                   <Button color="light" outline onClick={() => onStateDetailBookBook(dataRow)}>
                     <HiEye className="mr-2 h-5 w-5" /> Preview
-                  </Button>
+                  </Button> */}
+                  <Dropdown.Item
+                    icon={HiPencilAlt}
+                    children="Edit"
+                    onClick={() => onShowEditBook(dataRow)}
+                  />
+                  <Dropdown.Item
+                    icon={HiEye}
+                    children="Detail"
+                    onClick={() => onStateDetailBookBook(dataRow)}
+                  />
                 </>
               )
             }),

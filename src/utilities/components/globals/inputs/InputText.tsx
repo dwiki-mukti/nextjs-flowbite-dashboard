@@ -100,6 +100,7 @@ export default function InputText({
                 }}
                 name={name}
                 className={`input-form`}
+                sizing='md'
                 {...props}
                 id={id ?? name}
                 color={color}

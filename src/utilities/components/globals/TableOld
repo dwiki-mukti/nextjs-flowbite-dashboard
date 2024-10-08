@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { CSSProperties, Fragment, ReactNode, useEffect, useState } from 'react'
 import Search from './Search';
 import Confirm from './Confirm';
-import { Button, Dropdown, Flowbite, Pagination, Table } from 'flowbite-react';
-import { HiDotsHorizontal, HiEye, HiPencilAlt, HiTrash } from "react-icons/hi";
+import { Button, Pagination, Table } from 'flowbite-react';
+import { HiEye, HiPencilAlt, HiTrash } from "react-icons/hi";
 
 
 
@@ -184,8 +184,8 @@ export default function TableCompnent({
                 </div>
             </div>
             <div>
-                <div className={`overflow-x-auto overflow-y-hidden ${className ?? ''}`}>
-                    <Table >
+                <div className={`overflow-auto ${className}`}>
+                    <Table hoverable>
                         {!noHeader && (
                             <Table.Head>
                                 {!noNumber && <Table.HeadCell style={{ width: "1px" }}>#</Table.HeadCell>}
@@ -232,51 +232,9 @@ export default function TableCompnent({
                                                     </Table.Cell>
                                                 )
                                             })}
+
                                             <Table.Cell className="inline-flex items-center gap-3 text-base">
-                                                <Flowbite theme={{ theme: { button: { color: { light: 'border-none hover:bg-slate-100 hover:text-blue-500' } } } }}>
-                                                    <Dropdown
-                                                        label={<HiDotsHorizontal className='w-5 h-5' />}
-                                                        dismissOnClick={false}
-                                                        theme={{ arrowIcon: 'hidden' }}
-                                                        className='font-medium'
-                                                        color='light'
-                                                    >
-                                                        {actions?.map((action, indexAction) => {
-                                                            if (typeof (action) == 'function') {
-                                                                return (
-                                                                    <Fragment key={indexAction}>
-                                                                        {action(dataRow, valuePrimaryKey) as ReactNode}
-                                                                    </Fragment>
-                                                                );
-                                                            } else if (action == 'edit') {
-                                                                return (
-                                                                    <Dropdown.Item
-                                                                        icon={HiPencilAlt}
-                                                                        children="Edit"
-                                                                        href={`${pathName}/data/${valuePrimaryKey}`}
-                                                                    />
-                                                                );
-                                                            } else if (action == 'show') {
-                                                                return (
-                                                                    <Dropdown.Item
-                                                                        icon={HiEye}
-                                                                        children="Detail"
-                                                                        href={`${pathName}/${valuePrimaryKey}`}
-                                                                    />
-                                                                );
-                                                            } else if (action == 'delete') {
-                                                                return (
-                                                                    <Dropdown.Item
-                                                                        icon={HiTrash}
-                                                                        children="Hapus"
-                                                                        onClick={() => setShowConfirmDelete(valuePrimaryKey)}
-                                                                        className='text-red-500'
-                                                                    />
-                                                                );
-                                                            }
-                                                        })}
-                                                    </Dropdown>
-                                                    {/* {actions?.map((action, indexAction) => {
+                                                {actions?.map((action, indexAction) => {
                                                     if (typeof (action) == 'function') {
                                                         return (
                                                             <Fragment key={indexAction}>
@@ -287,7 +245,7 @@ export default function TableCompnent({
                                                         return (
                                                             <Button
                                                                 key={indexAction}
-                                                                href={`${pathName}/data/${valuePrimaryKey}`}
+                                                                href={`${pathName}/${valuePrimaryKey}`}
                                                             >
                                                                 <HiPencilAlt className="mr-2 h-5 w-5" /> Edit
                                                             </Button>
@@ -298,7 +256,7 @@ export default function TableCompnent({
                                                                 key={indexAction}
                                                                 color='light'
                                                                 outline
-                                                                href={`${pathName}/${valuePrimaryKey}`}
+                                                                href={`${pathName}/data/${valuePrimaryKey}`}
                                                             >
                                                                 <HiEye className="mr-2 h-5 w-5" /> Detail
                                                             </Button>
@@ -314,8 +272,7 @@ export default function TableCompnent({
                                                             </Button>
                                                         );
                                                     }
-                                                })} */}
-                                                </Flowbite>
+                                                })}
                                             </Table.Cell>
                                         </Table.Row>
                                     );

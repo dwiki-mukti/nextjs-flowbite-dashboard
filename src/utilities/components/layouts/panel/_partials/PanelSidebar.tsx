@@ -6,12 +6,16 @@ import { usePanelContext } from "./PanelContext";
 import { IconType } from "react-icons";
 import { ReactNode } from "react";
 
+
+interface typeItemSidebar {
+  icon?: IconType,
+  href?: string,
+  children?: ReactNode,
+  label?: string
+  // items: this[]
+}
 export interface typePanelSidebarProps {
-  items: {
-    icon?: IconType,
-    href?: string,
-    children?: ReactNode
-  }[]
+  items: (typeItemSidebar & { items?: typeItemSidebar[] })[]
 }
 export default function PanelSidebar({ sidebarItems }: {
   sidebarItems?: typePanelSidebarProps[];
@@ -30,16 +34,46 @@ export default function PanelSidebar({ sidebarItems }: {
     >
 
       <Sidebar.Items>
-
         {sidebarItems?.map((sidebarItem, indexSidebarItem) => (
           <Sidebar.ItemGroup key={indexSidebarItem}>
-            {sidebarItem.items.map(({ children: itemChildren, ...itemProps }, indexItem) => (
-              <Sidebar.Item key={indexItem} {...itemProps}>
-                {itemChildren}
-              </Sidebar.Item>
-            ))}
+            {sidebarItem.items.map((itemProp, indexItem) => {
+              if (itemProp.items?.length) {
+                return (
+                  <Sidebar.Collapse
+                    icon={itemProp.icon}
+                    label={itemProp.label}
+                  >
+                    {itemProp.items.map((subItemProp, indexSubItemProp) => (
+                      <Sidebar.Item
+                        key={indexSubItemProp}
+                        icon={subItemProp.icon}
+                        href={subItemProp.href}
+                      >{subItemProp.children}</Sidebar.Item>
+                    ))}
+                  </Sidebar.Collapse>
+                )
+              } else {
+                return (
+                  <Sidebar.Item
+                    key={indexItem}
+                    icon={itemProp.icon}
+                    href={itemProp.href}
+                  >{itemProp.children}</Sidebar.Item>
+                )
+              }
+            })}
           </Sidebar.ItemGroup>
         ))}
+
+        {/* {sidebarItems?.map((sidebarItem, indexSidebarItem) => (
+              <Sidebar.ItemGroup key={indexSidebarItem}>
+                {sidebarItem.items.map(({ children: itemChildren, ...itemProps }, indexItem) => (
+                  <Sidebar.Item key={indexItem} {...itemProps}>
+                    {itemChildren}
+                  </Sidebar.Item>
+                ))}
+              </Sidebar.ItemGroup>
+            ))} */}
 
       </Sidebar.Items>
 
