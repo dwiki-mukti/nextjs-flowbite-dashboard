@@ -48,7 +48,7 @@ export default function PanelNavbar({
                 </span>
               </Navbar.Brand>
             </div>
-            <div>
+            <div className="flex items-center gap-2">
               {rightItemNavbar}
               <DarkThemeToggle />
             </div>

@@ -67,7 +67,7 @@ export default function InputCheck({
                 {!noLabel && (
                     <Label
                         htmlFor={id ?? name}
-                        className="mb-2 block capitalize"
+                        className="block"
                         color={color}
                         children={label ?? name}
                     />
