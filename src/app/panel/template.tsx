@@ -26,7 +26,10 @@ export default function DashboardLayout({ children }: { children?: ReactNode }) 
             rightItemNavbar={<>
                 <Button
                     color='light'
-                    theme={{ base: 'border-none h-10 w-10 [&:hover>*]:text-red-500 [&>*]:p-0 flex', inner: { base: 'm-auto' } }}
+                    theme={{
+                        base: 'border-none h-10 w-10 [&:hover>*]:text-red-500 [&>*]:p-0 flex',
+                        inner: { base: 'm-auto' }
+                    }}
                     onClick={() => setShowConfirmLogout(true)}
                 >
                     <HiPower className='h-5 w-5 m-auto' />
@@ -66,7 +69,7 @@ export default function DashboardLayout({ children }: { children?: ReactNode }) 
                 },
                 {
                     items: [
-                        { icon: HiClipboardList, children: 'Docs', href: '#' },
+                        { icon: HiClipboardList, children: 'Docs', href: '/panel/sample' },
                         { icon: HiCollection, children: 'Component', href: '#' },
                     ]
                 }
