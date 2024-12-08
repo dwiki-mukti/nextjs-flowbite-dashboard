@@ -1,1 +1,1 @@
-export { default } from './src/utilities/configs/next.mjs'
+export { default } from './src/externals/configs/next.mjs'

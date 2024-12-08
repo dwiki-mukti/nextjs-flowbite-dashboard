@@ -1,1 +1,1 @@
-export { default } from './src/utilities/configs/postcss.mjs'
+export { default } from './src/externals/configs/postcss.mjs'
